@@ -1,0 +1,26 @@
+run_command: '{output_file}'
+run_args: {}
+compile_command: '{compiler} {flags} {source_file} -o {output_file}'
+compile_args:
+    compiler: 'g++'
+    flags: '-w -O0'
+source_suffix: .cc
+template: |
+    #include <iostream>
+
+    {preamble}
+
+    int main(int argc, char **argv) {{
+        {code}
+        return 0;
+    }}
+prompt:
+    lexer_class: CppLexer
+    lexer_module: pygments.lexers.c_cpp
+    preamble_start_char: '@'
+    preamble_end_char: '$'
+    pairings:
+        - ['{', '}']
+        - ['(', ')']
+        - ['[', ']']
+        - ['@', '$']
